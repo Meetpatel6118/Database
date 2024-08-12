@@ -1,0 +1,33 @@
+
+TO_CHAR(SYSDATE,'DAYDDMONTHYEARHH:MI:SSAM')                                                                                        
+-----------------------------------------------------------------------------------------------------------------------------------
+Tuesday   25 April     Twenty Twenty-Three 01:43:38 PM
+
+
+Error starting at line : 303 in command -
+UPDATE skills_table
+SET certified_by = 'Paul Courtland', certification_date = current_date
+WHERE skill_name = 'Oracle Database Administrator'
+Error at Command Line : 303 Column : 8
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 307 in command -
+SELECT skill_description FROM skills_table
+WHERE skill_name = 'Oracle Database Administrator'
+AND certified_by = 'Paul Courtland'
+
+MINUS
+
+SELECT skill_description FROM skills_table
+WHERE skill_name = 'Oracle Database Administrator'
+AND certified_by = 'Sarah Carlson'
+Error at Command Line : 307 Column : 31
+Error report -
+SQL Error: ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:

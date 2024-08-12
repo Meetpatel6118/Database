@@ -1,0 +1,224 @@
+
+TO_CHAR(SYSDATE,'DAYDDMONTHYEARHH:MI:SSAM')                                                                                        
+-----------------------------------------------------------------------------------------------------------------------------------
+Tuesday   25 April     Twenty Twenty-Three 12:52:08 Pm
+
+
+Error starting at line : 4 in command -
+DROP TABLE ADVISOR CASCADE
+Error report -
+ORA-00905: missing keyword
+00905. 00000 -  "missing keyword"
+*Cause:    
+*Action:
+
+Error starting at line : 5 in command -
+DROP TABLE STUDENT CASCADE
+Error report -
+ORA-00905: missing keyword
+00905. 00000 -  "missing keyword"
+*Cause:    
+*Action:
+
+Error starting at line : 6 in command -
+DROP TABLE ENROLLMENT CASCADE
+Error report -
+ORA-00905: missing keyword
+00905. 00000 -  "missing keyword"
+*Cause:    
+*Action:
+
+Error starting at line : 7 in command -
+DROP TABLE COURSE CASCADE
+Error report -
+ORA-00905: missing keyword
+00905. 00000 -  "missing keyword"
+*Cause:    
+*Action:
+
+Error starting at line : 9 in command -
+CREATE TABLE ADVISOR(AdvisorID NUMBER, AdvisorName VARCHAR2(40))
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+
+Error starting at line : 10 in command -
+ALTER TABLE ADVISOR
+ADD CONSTRAINT Advisor_AdvisorID_PK PRIMARY KEY (AdvisorID)
+Error report -
+ORA-02260: table can have only one primary key
+02260. 00000 -  "table can have only one primary key"
+*Cause:    Self-evident.
+*Action:   Remove the extra primary key.
+
+Error starting at line : 12 in command -
+ALTER TABLE  ADVISOR
+MODIFY (AdvisorName CONSTRAINT ADVISOR_AdvisorName_NN NOT NULL)
+Error report -
+ORA-01442: column to be modified to NOT NULL is already NOT NULL
+01442. 00000 -  "column to be modified to NOT NULL is already NOT NULL"
+*Cause:    
+*Action:
+
+Error starting at line : 15 in command -
+CREATE TABLE STUDENT(StudentID NUMBER, StudentName VARCHAR2(40), Birthdate DATE, AdvisorID NUMBER)
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+
+Error starting at line : 16 in command -
+ALTER TABLE STUDENT
+ADD CONSTRAINT STUDENT_StudentID_PK PRIMARY KEY (StudentID)
+Error report -
+ORA-02260: table can have only one primary key
+02260. 00000 -  "table can have only one primary key"
+*Cause:    Self-evident.
+*Action:   Remove the extra primary key.
+
+Error starting at line : 18 in command -
+ALTER TABLE  STUDENT
+ADD CONSTRAINT STUDENT_AdvisorID_FK FOREIGN KEY (AdvisorID)
+REFERENCES ADVISOR (AdvisorID)
+Error report -
+ORA-02275: such a referential constraint already exists in the table
+02275. 00000 -  "such a referential constraint already exists in the table"
+*Cause:    Self-evident.
+*Action:   Remove the extra constraint.
+
+Error starting at line : 21 in command -
+ALTER TABLE  STUDENT
+MODIFY (StudentName CONSTRAINT STUDENT_StudentName_NN NOT NULL)
+Error report -
+ORA-01442: column to be modified to NOT NULL is already NOT NULL
+01442. 00000 -  "column to be modified to NOT NULL is already NOT NULL"
+*Cause:    
+*Action:
+
+Error starting at line : 25 in command -
+CREATE TABLE COURSE(CourseID NUMBER, CourseTitle VARCHAR2(40), Credits NUMBER)
+Error report -
+ORA-00955: name is already used by an existing object
+00955. 00000 -  "name is already used by an existing object"
+*Cause:    
+*Action:
+
+Error starting at line : 26 in command -
+ALTER TABLE COURSE
+ADD CONSTRAINT COURSE_CourseID_PK PRIMARY KEY (CourseID)
+Error report -
+ORA-02260: table can have only one primary key
+02260. 00000 -  "table can have only one primary key"
+*Cause:    Self-evident.
+*Action:   Remove the extra primary key.
+
+Error starting at line : 29 in command -
+CREATE TABLE ENROLLMENT(StudentID NUMBER, CourseID NUMBER, GRADE NUMBER, 
+CONSTRAINT ENROLLMENT_StudentID_CourseID_PK PRIMARY KEY (StudentID,CourseID) )
+Error report -
+ORA-00972: identifier is too long
+00972. 00000 -  "identifier is too long"
+*Cause:    An identifier with more than 128 bytes was specified,
+           or a password identifier longer than 30 bytes was specified.
+*Action:   Specify at most 128 bytes for identifiers,
+           and at most 30 bytes for password identifiers.
+
+Error starting at line : 32 in command -
+ALTER TABLE ENROLLMENT
+ADD CONSTRAINT ENROLLMENT_StudentID_FK FOREIGN KEY (StudentID)
+REFERENCES STUDENT (StudentID)
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 35 in command -
+ALTER TABLE ENROLLMENT
+ADD CONSTRAINT ENROLLMENT_CourseID_FK FOREIGN KEY (CourseID)
+REFERENCES COURSE (CourseID)
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+
+Error starting at line : 39 in command -
+ALTER TABLE STUDENT
+ADD(GENDER CHAR(1) )
+Error report -
+ORA-01430: column being added already exists in table
+01430. 00000 -  "column being added already exists in table"
+*Cause:    
+*Action:
+
+Error starting at line : 42 in command -
+ALTER TABLE STUDENT
+ADD CONSTRAINT STUDENT_GENDER_CC CHECK (GENDER IN('M','m','F','f'))
+Error report -
+ORA-02264: name already used by an existing constraint
+02264. 00000 -  "name already used by an existing constraint"
+*Cause:    The specified constraint name has to be unique.
+*Action:   Specify a unique constraint name for the constraint.
+
+Error starting at line : 45 in command -
+ALTER TABLE COURSE
+MODIFY (Credits NUMBER CONSTRAINT COURSE_Credits_CC CHECK (Credits >= 0))
+Error report -
+ORA-02264: name already used by an existing constraint
+02264. 00000 -  "name already used by an existing constraint"
+*Cause:    The specified constraint name has to be unique.
+*Action:   Specify a unique constraint name for the constraint.
+
+Error starting at line : 48 in command -
+ALTER TABLE COURSE
+ADD CONSTRAINT COURSE_CourseTitle_UK UNIQUE (CourseTitle)
+Error report -
+ORA-02261: such unique or primary key already exists in the table
+02261. 00000 -  "such unique or primary key already exists in the table"
+*Cause:    Self-evident.
+*Action:   Remove the extra key.
+
+TABLE_NAME                    
+------------------------------
+ADVISOR
+STUDENT
+COURSE
+
+Name        Null?    Type         
+----------- -------- ------------ 
+COURSEID    NOT NULL NUMBER       
+COURSETITLE          VARCHAR2(40) 
+CREDITS              NUMBER       
+Name        Null?    Type         
+----------- -------- ------------ 
+ADVISORID   NOT NULL NUMBER       
+ADVISORNAME NOT NULL VARCHAR2(40) 
+Name        Null?    Type         
+----------- -------- ------------ 
+STUDENTID   NOT NULL NUMBER       
+STUDENTNAME NOT NULL VARCHAR2(40) 
+BIRTHDATE            DATE         
+ADVISORID            NUMBER       
+GENDER               CHAR(1)      
+
+ERROR:
+ORA-04043: object ENROLLMENT does not exist
+
+CONSTRAINT_NAME                TABLE_NAME                     C
+------------------------------ ------------------------------ -
+ADVISOR_ADVISORNAME_NN         ADVISOR                        C
+STUDENT_STUDENTNAME_NN         STUDENT                        C
+STUDENT_GENDER_CC              STUDENT                        C
+COURSE_CREDITS_CC              COURSE                         C
+STUDENT_ADVISORID_FK           STUDENT                        R
+ADVISOR_ADVISORID_PK           ADVISOR                        P
+STUDENT_STUDENTID_PK           STUDENT                        P
+COURSE_COURSEID_PK             COURSE                         P
+COURSE_COURSETITLE_UK          COURSE                         U
+
+9 rows selected. 
+

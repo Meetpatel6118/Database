@@ -1,0 +1,33 @@
+
+TO_CHAR(SYSDATE,'DAYDDMONTHYEARHH:MI:SSAM')                                                                                        
+-----------------------------------------------------------------------------------------------------------------------------------
+Tuesday   25 April     Twenty Twenty-Three 01:15:01 PM
+
+Warning: View created with compilation errors.
+
+Table ORDER_LINE_ARCHIVE created.
+
+
+1 row inserted.
+
+
+  OLD_O_ID OLD_INV_ID OLD_OL_QUANTITY O_DATE   O_METHPMT  ITEM_DESC                      C_LAST                         C_FIRST                       
+---------- ---------- --------------- -------- ---------- ------------------------------ ------------------------------ ------------------------------
+         1          1               1 29-05-06 CC         3-Season Tent                  Harris                         Paula                         
+
+
+Table ORDER_LINE_ARCHIVE dropped.
+
+
+TO_CHAR(SYSDATE,'DAYDDMONTHYEARHH:MI:SSAM')                                                                                        
+-----------------------------------------------------------------------------------------------------------------------------------
+Tuesday   25 April     Twenty Twenty-Three 01:15:01 Pm
+
+
+   ITEM_ID SUM(INV_QOH) MIN(INV_PRICE) MAX(INV_PRICE)
+---------- ------------ -------------- --------------
+         1          114         199.95         199.95
+         6           50          15.95          15.95
+         4          135          59.95          59.95
+         7          100          19.99          19.99
+

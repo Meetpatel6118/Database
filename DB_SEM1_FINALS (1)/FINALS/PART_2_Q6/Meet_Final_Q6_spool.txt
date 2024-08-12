@@ -1,0 +1,22 @@
+
+TO_CHAR(SYSDATE,'DAYDDMONTHYEARHH:MI:SSAM')                                                                                        
+-----------------------------------------------------------------------------------------------------------------------------------
+Tuesday   25 April     Twenty Twenty-Three 01:50:04 PM
+
+
+Error starting at line : 301 in command -
+SELECT DISTINCT c.first_name, c.last_name, p.manager_last_name
+FROM consultant 
+INNER JOIN consultant project  ON c.consultant_id = cp.consultant_id
+INNER JOIN project  ON cp.project_id = p.project_id
+WHERE p.project_name IN 
+    (SELECT p2.project_name
+     FROM project 
+     WHERE p2.project_name LIKE 'Morningstar Bank%')
+ORDER BY c.last_name ASC
+Error at Command Line : 303 Column : 53
+Error report -
+SQL Error: ORA-00904: "CP"."CONSULTANT_ID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+*Action:
